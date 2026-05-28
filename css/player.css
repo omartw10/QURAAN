@@ -153,6 +153,12 @@
   border-color: var(--color-accent);
 }
 
+/* حالة الخطأ: إطار أحمر عند الضغط على التشغيل دون اختيار */
+.custom-select--error .custom-select__trigger {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+}
+
 .custom-select__trigger i {
   color: var(--color-accent);
   font-size: 0.8rem;

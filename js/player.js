@@ -195,6 +195,37 @@ function selectRewayah(moshaf) {
   // Populate Surahs based on the allowed surah_list in the moshaf
   const allowedSurahIds = moshaf.surah_list.split(',').map(s => parseInt(s, 10));
   populateSurahs(allowedSurahIds);
+
+  // إن كانت هناك سورة مختارة مسبقاً: أعد تحميلها بالقارئ/الرواية الجديدة فوراً
+  if (selectedSurah) {
+    if (allowedSurahIds.includes(selectedSurah.id)) {
+      selectSurah(selectedSurah);
+    } else {
+      // السورة السابقة غير متوفّرة لهذا الاختيار → إعادة ضبط اختيار السورة
+      resetSurahSelection();
+    }
+  }
+}
+
+/**
+ * إعادة ضبط اختيار السورة فقط (عند عدم توفّرها في الرواية الجديدة)
+ */
+function resetSurahSelection() {
+  selectedSurah = null;
+  surahSelect.querySelector('.custom-select__trigger span').textContent = 'اختر السورة';
+  markSelectedOption(surahSelect, null);
+  audio.pause();
+  audio.src = '';
+  isPlaying = false;
+  isBuffering = false;
+  rewindBtn.setAttribute('disabled', 'true');
+  forwardBtn.setAttribute('disabled', 'true');
+  nowPlaying.hidden = true;
+  progressFill.style.width = '0%';
+  currentTimeEl.textContent = '00:00';
+  durationEl.textContent = '--:--';
+  audioWave.classList.remove('audio-player__wave--playing');
+  updatePlayButton();
 }
 
 /**
@@ -284,7 +315,6 @@ function clearRewayahAndSurah() {
   surahSelect.querySelector('.custom-select__trigger span').textContent = 'اختر السورة';
   surahSelect.querySelector('.custom-select__options').innerHTML = '';
   
-  playBtn.setAttribute('disabled', 'true');
   rewindBtn.setAttribute('disabled', 'true');
   forwardBtn.setAttribute('disabled', 'true');
   nowPlaying.hidden = true;
@@ -309,6 +339,7 @@ function setupDropdownToggle(selectEl) {
     closeAllDropdowns();
     if (!isOpen) {
       selectEl.classList.add('custom-select--open');
+      selectEl.classList.remove('custom-select--error'); // إزالة إطار الخطأ عند التفاعل
 
       // عند الفتح: تفريغ البحث السابق وإظهار كل الخيارات ثم التركيز على الحقل
       const search = selectEl.querySelector('.custom-select__search input');
@@ -528,12 +559,25 @@ function updatePlayButton() {
 }
 
 function togglePlay() {
-  if (!audio.src) return;
+  // لم يختر المستخدم سورة بعد → إبراز الحقول الناقصة بإطار أحمر
+  if (!audio.src) {
+    highlightMissingSelections();
+    return;
+  }
   if (isPlaying) {
     audio.pause();
   } else {
     playAudio();
   }
+}
+
+/**
+ * إبراز القوائم التي لم يحدّد المستخدم اختياراً فيها بإطار أحمر
+ */
+function highlightMissingSelections() {
+  reciterSelect.classList.toggle('custom-select--error', !selectedReciter);
+  riwayaSelect.classList.toggle('custom-select--error', !selectedMoshaf);
+  surahSelect.classList.toggle('custom-select--error', !selectedSurah);
 }
 
 function playAudio() {
@@ -576,11 +620,8 @@ function showLoader(show) {
     const icon = playBtn.querySelector('i');
     if (icon) icon.className = 'fas fa-spinner fa-spin';
   } else {
-    if (!audio.src) {
-      playBtn.setAttribute('disabled', 'true');
-    } else {
-      playBtn.removeAttribute('disabled');
-    }
+    // نُبقي الزر قابلاً للضغط حتى لو لم تُختر سورة، لإظهار التحقق بإطار أحمر
+    playBtn.removeAttribute('disabled');
     updatePlayButton();
   }
 }

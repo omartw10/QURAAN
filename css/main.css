@@ -87,6 +87,9 @@ body.is-leaving {
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  /* خلفية موحّدة مع السمة لمنع وميض أبيض أثناء الانتقال */
+  background-color: var(--bg-color);
+  transition: background-color var(--transition-speed) var(--transition-timing);
 }
 
 body {
