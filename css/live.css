@@ -1,0 +1,236 @@
+/* ==========================================================================
+   LIVE STREAMING COMPONENT (BEM Methodology)
+   ========================================================================== */
+
+.live-stream {
+  padding: 3rem 0 5rem;
+}
+
+.live-stream__container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.live-stream__header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.live-stream__title {
+  font-size: 2.5rem;
+  color: var(--color-accent);
+}
+
+.live-stream__subtitle {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+/* Tabs switcher for Mekkah/Medinah */
+.live-stream__tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.live-stream__tab-btn {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color var(--transition-speed) var(--transition-timing),
+              border-color var(--transition-speed) var(--transition-timing),
+              color var(--transition-speed) var(--transition-timing),
+              transform var(--transition-speed) var(--transition-timing);
+  box-shadow: var(--shadow);
+}
+
+.live-stream__tab-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+  background-color: var(--hover-bg);
+}
+
+.live-stream__tab-btn--active {
+  background-image: var(--gradient-gold);
+  color: var(--text-white) !important;
+  border-color: transparent !important;
+  box-shadow: 0 6px 16px rgba(198, 160, 75, 0.3);
+}
+
+.live-stream__tab-btn i {
+  font-size: 0.6rem;
+  color: #e74c3c;
+  animation: pulseLive 2s infinite;
+}
+
+@keyframes pulseLive {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* Video Player Canvas */
+.live-stream__video-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transition: background-color var(--transition-speed) var(--transition-timing),
+              border-color var(--transition-speed) var(--transition-timing);
+}
+
+.live-stream__video-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  background-color: #000;
+}
+
+.live-stream__iframe,
+.live-stream__placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Custom Placeholder with images from unsplash */
+.live-stream__placeholder {
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+.live-stream__placeholder--makkah {
+  background-image: linear-gradient(rgba(7, 56, 42, 0.45), rgba(4, 26, 19, 0.65)),
+                    url('https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=1920');
+}
+
+.live-stream__placeholder--madinah {
+  background-image: linear-gradient(rgba(7, 56, 42, 0.45), rgba(4, 26, 19, 0.65)),
+                    url('https://images.unsplash.com/photo-1591604021695-0c69b7c05981?w=1920');
+}
+
+.live-stream__play-overlay {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transition: transform var(--transition-speed) var(--transition-timing),
+              background-color var(--transition-speed) var(--transition-timing),
+              color var(--transition-speed) var(--transition-timing);
+}
+
+.live-stream__placeholder:hover .live-stream__play-overlay {
+  transform: scale(1.1);
+  background-image: var(--gradient-gold);
+  color: var(--text-white);
+}
+
+/* شريط أسفل الفيديو: شارة البث + رابط يوتيوب الاحتياطي */
+.live-stream__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.5rem;
+  background-color: var(--card-bg);
+  border-top: 1px solid var(--border-color);
+}
+
+.live-stream__live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
+
+.live-stream__live-badge i {
+  font-size: 0.6rem;
+  color: #e74c3c;
+  animation: pulseLive 2s infinite;
+}
+
+.live-stream__yt-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-full);
+  background-color: var(--accent-soft);
+  color: var(--color-accent);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: background-color var(--transition-speed) var(--transition-timing),
+              color var(--transition-speed) var(--transition-timing);
+}
+
+.live-stream__yt-link:hover {
+  background-image: var(--gradient-gold);
+  color: #fff;
+}
+
+.live-stream__yt-link i {
+  font-size: 1.05rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .live-stream__title {
+    font-size: 2rem;
+  }
+  
+  .live-stream__tabs {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .live-stream__tab-btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+  
+  .live-stream__play-overlay {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .live-stream__bar {
+    justify-content: center;
+    text-align: center;
+  }
+}

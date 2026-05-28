@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>رحلة هداية في رحاب القرآن الكريم</title>
+
+  <!-- Google Fonts (Amiri & Tajawal) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Project Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/player.css">
+  <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+
+  <!-- ============================================
+       HEADER (Navbar Component)
+       ============================================ -->
+  <header class="header">
+    <div class="container header__container">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="header__logo">
+        <div class="header__logo-icon">قرآن</div>
+        <span class="header__logo-text">رحلة هداية</span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="header__nav" id="mainNav">
+        <ul class="header__list">
+          <li class="header__item">
+            <a href="index.html" class="header__link header__link--active">الرئيسية</a>
+          </li>
+          <li class="header__item">
+            <a href="live.html" class="header__link">البث المباشر</a>
+          </li>
+          <li class="header__item">
+            <a href="contact.html" class="header__link">تواصل معنا</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Theme & Mobile Controls -->
+      <div class="header__actions">
+        <button class="header__theme-toggle" id="themeToggle" title="تبديل النمط" aria-label="تبديل مظهر الموقع">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="header__mobile-toggle" id="mobileToggle" aria-label="فتح قائمة التنقل" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ============================================
+       MAIN CONTENT (Hero & Player Section)
+       ============================================ -->
+  <main>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero__content">
+        <div class="hero__badge">
+          <i class="fas fa-mosque"></i>
+          <span>رحلة هداية في رحاب</span>
+        </div>
+        <h1 class="hero__title">القرآن الكريم</h1>
+        <p class="hero__subtitle">استمع بجودة عالية برواية وقارئ من اختيارك</p>
+      </div>
+    </section>
+
+    <!-- Player Section -->
+    <section class="player-section" id="player">
+      <div class="container">
+        
+        <div class="player-card">
+          
+          <!-- Selectors Grid Row -->
+          <div class="selectors-grid">
+            
+            <!-- Reciter Selector Group -->
+            <div class="selector-group">
+              <label class="selector-group__label">
+                <i class="fas fa-user-tie"></i>
+                <span>اختر القارئ</span>
+              </label>
+              
+              <!-- Custom select box -->
+              <div class="custom-select" id="reciterSelect">
+                <div class="custom-select__trigger">
+                  <span>جاري التحميل...</span>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="custom-select__options">
+                  <!-- JS dynamically populates this -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Riwaya Selector Group -->
+            <div class="selector-group">
+              <label class="selector-group__label">
+                <i class="fas fa-book-open"></i>
+                <span>اختر الرواية</span>
+              </label>
+              
+              <!-- Custom select box -->
+              <div class="custom-select" id="riwayaSelect">
+                <div class="custom-select__trigger">
+                  <span>اختر الرواية</span>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="custom-select__options">
+                  <!-- JS dynamically populates this -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Surah Selector Group -->
+            <div class="selector-group">
+              <label class="selector-group__label">
+                <i class="fas fa-list-ol"></i>
+                <span>اختر السورة</span>
+              </label>
+              
+              <!-- Custom select box -->
+              <div class="custom-select" id="surahSelect">
+                <div class="custom-select__trigger">
+                  <span>اختر السورة</span>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="custom-select__options">
+                  <!-- JS dynamically populates this -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Now Playing info (يظهر عند اختيار سورة) -->
+          <div class="now-playing" id="nowPlaying" hidden>
+            <i class="fas fa-book-quran now-playing__icon"></i>
+            <div class="now-playing__text">
+              <span class="now-playing__surah" id="npSurah"></span>
+              <span class="now-playing__reciter" id="npReciter"></span>
+            </div>
+          </div>
+
+          <!-- Audio Player Bar -->
+          <div class="audio-player">
+
+            <!-- Seek Backward 10s -->
+            <button class="audio-player__seek-btn" id="rewindBtn" disabled title="إرجاع 10 ثوانٍ" aria-label="إرجاع 10 ثوانٍ للخلف">
+              <i class="fas fa-rotate-right"></i>
+              <span class="audio-player__seek-num">10</span>
+            </button>
+
+            <!-- Circular Play Button -->
+            <button class="audio-player__play-btn" id="playBtn" disabled title="تشغيل / إيقاف" aria-label="تشغيل السورة الحالية أو إيقافها">
+              <i class="fas fa-play"></i>
+            </button>
+
+            <!-- Seek Forward 10s -->
+            <button class="audio-player__seek-btn" id="forwardBtn" disabled title="تقديم 10 ثوانٍ" aria-label="تقديم 10 ثوانٍ للأمام">
+              <i class="fas fa-rotate-left"></i>
+              <span class="audio-player__seek-num">10</span>
+            </button>
+
+            <!-- Timeline and Progress -->
+            <div class="audio-player__progress-wrapper">
+              <div class="audio-player__bar-container" id="progressBar">
+                <div class="audio-player__progress-fill" id="progressFill"></div>
+              </div>
+              <div class="audio-player__time-info">
+                <span id="currentTime">00:00</span>
+                <span id="duration">--:--</span>
+              </div>
+            </div>
+
+            <!-- Volume Control slider -->
+            <div class="audio-player__volume-wrapper">
+              <button id="volumeBtn" class="fas fa-volume-up audio-player__volume-btn" title="كتم الصوت" aria-label="كتم أو تفعيل الصوت"></button>
+              <input type="range" class="audio-player__slider" id="volumeSlider" min="0" max="100" value="80" title="مستوى الصوت">
+            </div>
+
+            <!-- Soundwave Micro-animation -->
+            <div class="audio-player__wave" id="audioWave">
+              <span class="audio-player__wave-bar"></span>
+              <span class="audio-player__wave-bar"></span>
+              <span class="audio-player__wave-bar"></span>
+              <span class="audio-player__wave-bar"></span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================
+         FEATURES (بطاقات + أزرار تنقّل)
+         ============================================ -->
+    <section class="features">
+      <div class="container">
+
+        <div class="features__header">
+          <h2 class="features__title">اكتشف رحاب المنصّة</h2>
+          <p class="features__subtitle">كل ما تحتاجه لرحلة إيمانية هادئة في مكان واحد</p>
+        </div>
+
+        <div class="features__grid">
+
+          <!-- Card 1 (البطاقة كاملة رابط) -->
+          <a href="#player" class="feature-card">
+            <div class="feature-card__icon"><i class="fas fa-book-quran"></i></div>
+            <h3 class="feature-card__title">روايات وقُرّاء</h3>
+            <p class="feature-card__desc">
+              نخبة من مشاهير القرّاء بأعذب الأصوات، وروايات متعددة تختارها بما يوافق ذائقتك، بجودة صوتية نقية تأسر القلب.
+            </p>
+            <span class="feature-card__btn">
+              <span>اختر قارئك</span>
+              <i class="fas fa-arrow-left"></i>
+            </span>
+          </a>
+
+          <!-- Card 2 -->
+          <a href="live.html" class="feature-card">
+            <div class="feature-card__icon"><i class="fas fa-kaaba"></i></div>
+            <h3 class="feature-card__title">بثّ الحرمين</h3>
+            <p class="feature-card__desc">
+              عِش أجواء بيت الله الحرام والمسجد النبوي الشريف لحظة بلحظة، مع بثٍّ حيّ مباشر بجودة عالية يقرّبك من المشاعر المقدّسة.
+            </p>
+            <span class="feature-card__btn">
+              <span>شاهد البث</span>
+              <i class="fas fa-arrow-left"></i>
+            </span>
+          </a>
+
+          <!-- Card 3 -->
+          <a href="contact.html" class="feature-card">
+            <div class="feature-card__icon"><i class="fas fa-envelope-open-text"></i></div>
+            <h3 class="feature-card__title">نُسعد بتواصلكم</h3>
+            <p class="feature-card__desc">
+              رأيك يُثري المنصّة ويرتقي بها؛ شاركنا اقتراحاتك واستفساراتك، فبابُنا مفتوح لكل كلمة طيّبة تعيننا على خدمتكم.
+            </p>
+            <span class="feature-card__btn">
+              <span>راسلنا</span>
+              <i class="fas fa-arrow-left"></i>
+            </span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================
+       FOOTER (Footer Component)
+       ============================================ -->
+  <footer class="footer">
+    <div class="container footer__container">
+      
+      <!-- Brand details -->
+      <div class="footer__brand">
+        <div class="footer__logo">رحلة هداية</div>
+        <p class="footer__description">
+          منصة إسلامية تهدف لتسهيل الاستماع لكلام الله عز وجل بصوت كوكبة من مشاهير القراء بالروايات المتعددة، ومتابعة البث الحي المباشر لبيت الله الحرام والمسجد النبوي الشريف.
+        </p>
+      </div>
+
+      <!-- Quick Nav Links -->
+      <div class="footer__section">
+        <h3 class="footer__title">روابط سريعة</h3>
+        <ul class="footer__links-list">
+          <li><a href="index.html" class="footer__link"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+          <li><a href="live.html" class="footer__link"><i class="fas fa-chevron-left"></i> البث المباشر</a></li>
+          <li><a href="contact.html" class="footer__link"><i class="fas fa-chevron-left"></i> تواصل معنا</a></li>
+        </ul>
+      </div>
+
+      <!-- Socials / Contacts -->
+      <div class="footer__section">
+        <h3 class="footer__title">تابعنا</h3>
+        <ul class="footer__social-list">
+          <li><a href="#" class="footer__social-link" title="تويتر"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#" class="footer__social-link" title="فيسبوك"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="#" class="footer__social-link" title="انستغرام"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Legal bottom line -->
+    <div class="container footer__bottom">
+      <p class="footer__copy">جميع الحقوق محفوظة &copy; 2026 - موقع رحلة هداية في رحاب القرآن الكريم</p>
+      <p class="footer__developer">مشروع مقرر <span class="footer__developer-name">CS351</span></p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/player.js"></script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+/* ==========================================================================
+   CSS RESET & BASE STYLES (Islamic Emerald Green / Gold Theme)
+   ========================================================================== */
+
+:root {
+  /* الهوية اللونية: أخضر زمردي إسلامي + ذهبي فاخر */
+  --color-primary: #0d5c43;    /* أخضر زمردي عميق */
+  --color-secondary: #07382a;  /* أخضر أغمق */
+  --color-accent: #c6a04b;     /* ذهبي دافئ */
+  --color-accent-light: #e0c074;/* ذهبي فاتح للتدرجات */
+  --color-aux-1: #ffffff;      /* أبيض نقي */
+
+  /* تدرجات لونية جاهزة لإعادة الاستخدام */
+  --gradient-gold: linear-gradient(135deg, #b8923c, #e0c074);
+  --gradient-dark: linear-gradient(135deg, #0d5c43, #07382a);
+
+  /* Light Theme Mapping (Default) */
+  --bg-color: #f4f8f5;
+  --card-bg: #ffffff;
+  --text-color: #123528;
+  --text-muted: #5d7a6e;
+  --text-white: #ffffff;
+  --border-color: #d9e7df;
+  --header-bg: rgba(244, 248, 245, 0.85);
+  --hover-bg: #eaf3ee;
+  --shadow-sm: 0 2px 8px rgba(13, 92, 67, 0.06);
+  --shadow: 0 8px 24px rgba(13, 92, 67, 0.10);
+  --shadow-lg: 0 18px 45px rgba(13, 92, 67, 0.16);
+  --accent-soft: rgba(198, 160, 75, 0.14);
+
+  /* Border Radius Scale (كانت مفقودة سابقاً) */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
+
+  /* Font Families */
+  --font-title: 'Amiri', serif;
+  --font-body: 'Tajawal', sans-serif;
+  --font-system: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Transitions */
+  --transition-speed: 250ms;
+  --transition-timing: ease-in-out;
+}
+
+/* Dark Theme Mapping (أخضر داكن أنيق + ذهبي) */
+[data-theme="dark"] {
+  --bg-color: #07211a;         /* أخضر داكن جداً */
+  --card-bg: #0d3328;          /* أخضر متوسط العمق للبطاقات */
+  --text-color: #eaf5ef;       /* أبيض مخضر مقروء جداً */
+  --text-muted: #9cc0b1;       /* أخضر فاتح للملاحظات */
+  --border-color: #1d4a3b;
+  --header-bg: rgba(7, 33, 26, 0.85);
+  --hover-bg: #154538;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.65);
+  --accent-soft: rgba(224, 192, 116, 0.16);
+  --gradient-gold: linear-gradient(135deg, #c6a04b, #ecd285);
+  --gradient-dark: linear-gradient(135deg, #0d3328, #061a14);
+}
+
+/* انتقال ناعم بين الصفحات: ظهور تدريجي عند الفتح، واختفاء قبل المغادرة.
+   نستخدم opacity فقط (دون transform) حتى لا تتأثر الترويسة الثابتة. */
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+body {
+  animation: pageFadeIn 350ms var(--transition-timing);
+}
+
+body.is-leaving {
+  opacity: 0;
+  transition: opacity 250ms var(--transition-timing);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  direction: rtl;
+  text-align: right;
+  line-height: 1.6;
+  transition: background-color var(--transition-speed) var(--transition-timing),
+              color var(--transition-speed) var(--transition-timing);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  color: var(--color-accent);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-speed) var(--transition-timing),
+              background-color var(--transition-speed) var(--transition-timing);
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Layout Containers */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+main {
+  flex: 1 0 auto;
+  margin-top: 80px; /* Offset for fixed header */
+}
+
+/* Screen Readers Only helper */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border: 2px solid var(--bg-color);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Respect user's system preferences for animations */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   CONTACT FORM COMPONENTS (BEM Methodology)
+   ========================================================================== */
+
+.contact-section {
+  padding: 3rem 0 5rem;
+}
+
+.contact-section__container {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.contact-section__header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.contact-section__title {
+  font-size: 2.5rem;
+  color: var(--color-accent);
+}
+
+.contact-section__subtitle {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+/* Form Card */
+.contact-card {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  transition: background-color var(--transition-speed) var(--transition-timing),
+              border-color var(--transition-speed) var(--transition-timing),
+              box-shadow var(--transition-speed) var(--transition-timing);
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 5px;
+  background-image: var(--gradient-gold);
+}
+
+/* BEM Form Block */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.form__label {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form__label i {
+  color: var(--color-accent);
+  font-size: 0.9rem;
+}
+
+.form__input,
+.form__textarea {
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-color);
+  transition: border-color var(--transition-speed) var(--transition-timing),
+              box-shadow var(--transition-speed) var(--transition-timing);
+}
+
+.form__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form__input:focus,
+.form__textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+/* Error states for input validation */
+.form__input--error,
+.form__textarea--error {
+  border-color: #e74c3c !important;
+}
+
+.form__error-message {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #e74c3c;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+/* Submit Button */
+.form__submit-btn {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 1rem 2rem;
+  background-image: var(--gradient-gold);
+  color: var(--text-white);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  box-shadow: 0 6px 16px rgba(198, 160, 75, 0.3);
+  transition: background-color var(--transition-speed) var(--transition-timing),
+              transform var(--transition-speed) var(--transition-timing),
+              box-shadow var(--transition-speed) var(--transition-timing);
+}
+
+.form__submit-btn:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(198, 160, 75, 0.38);
+}
+
+.form__submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Form success banner */
+.form__success {
+  background-color: rgba(46, 204, 113, 0.15);
+  border: 1px solid #2ecc71;
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  color: #27ae60;
+  font-family: var(--font-body);
+  text-align: center;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 700;
+}
+
+.form__success--visible {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .contact-card {
+    padding: 1.5rem;
+  }
+  
+  .contact-section__title {
+    font-size: 2rem;
+  }
+}
+
