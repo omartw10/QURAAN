@@ -276,6 +276,27 @@
       </div>
     </section>
 
+    <!-- ============================================
+         AYAH OF THE DAY (آية اليوم - عبر API)
+         ============================================ -->
+    <section class="ayah">
+      <div class="container">
+        <div class="ayah-card">
+          <i class="fas fa-book-quran ayah-card__watermark" aria-hidden="true"></i>
+
+          <h2 class="ayah-card__label">آية اليوم</h2>
+          <p class="ayah-card__text" id="ayahText">جارٍ تحميل الآية...</p>
+          <p class="ayah-card__tafsir" id="ayahTafsir"></p>
+          <span class="ayah-card__ref" id="ayahRef"></span>
+
+          <button class="ayah-card__btn" id="ayahRefreshBtn">
+            <i class="fas fa-rotate"></i>
+            <span>آية أخرى</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ============================================
@@ -324,5 +345,6 @@
   <!-- Scripts -->
   <script src="js/main.js"></script>
   <script src="js/player.js"></script>
+  <script src="js/ayah.js"></script>
 </body>
 </html>

@@ -700,6 +700,124 @@
   font-size: 0.8rem;
 }
 
+/* ==========================================================================
+   AYAH OF THE DAY (آية اليوم)
+   ========================================================================== */
+.ayah {
+  padding: 1rem 0 5rem;
+}
+
+.ayah-card {
+  position: relative;
+  overflow: hidden;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2.5rem;
+  box-shadow: var(--shadow);
+}
+
+/* إطار داخلي خفيف يعطي إحساساً بالأناقة */
+.ayah-card::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  pointer-events: none;
+}
+
+/* علامة مائية زخرفية في الزاوية */
+.ayah-card__watermark {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.5rem;
+  font-size: 4.5rem;
+  color: var(--color-accent);
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.ayah-card__label {
+  position: relative;
+  font-size: 1.6rem;
+  color: var(--color-accent);
+  margin-bottom: 1.75rem;
+}
+
+.ayah-card__text {
+  position: relative;
+  font-family: var(--font-title);
+  font-size: 1.9rem;
+  line-height: 2.4;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.ayah-card__tafsir {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto 1.75rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-style: italic;
+  line-height: 2;
+  color: var(--text-muted);
+}
+
+.ayah-card__ref {
+  position: relative;
+  display: block;
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 1.75rem;
+}
+
+.ayah-card__btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) var(--transition-timing),
+              color var(--transition-speed) var(--transition-timing),
+              border-color var(--transition-speed) var(--transition-timing),
+              transform var(--transition-speed) var(--transition-timing);
+}
+
+.ayah-card__btn:hover:not(:disabled) {
+  background-image: var(--gradient-gold);
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+.ayah-card__btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ayah-card__btn i {
+  color: var(--color-accent);
+}
+
+.ayah-card__btn:hover:not(:disabled) i {
+  color: #fff;
+}
+
 /* Responsive Player design */
 @media (max-width: 768px) {
   .hero__title {
@@ -755,6 +873,19 @@
 
   .features__title {
     font-size: 1.85rem;
+  }
+
+  .ayah-card {
+    padding: 2rem 1.25rem;
+  }
+
+  .ayah-card__text {
+    font-size: 1.5rem;
+    line-height: 2.1;
+  }
+
+  .ayah-card__watermark {
+    display: none;
   }
 }
 
