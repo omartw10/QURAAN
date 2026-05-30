@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head><title>OG Image Generator</title></head>
+<body>
+<canvas id="c" width="1200" height="630"></canvas>
+<script>
+const c = document.getElementById('c');
+const ctx = c.getContext('2d');
+
+// Background gradient
+const bg = ctx.createLinearGradient(0, 0, 1200, 630);
+bg.addColorStop(0, '#0b261c');
+bg.addColorStop(1, '#06190f');
+ctx.fillStyle = bg;
+ctx.fillRect(0, 0, 1200, 630);
+
+// Decorative circles
+ctx.strokeStyle = 'rgba(212, 165, 57, 0.12)';
+ctx.lineWidth = 1;
+[240, 200, 160, 120].forEach(r => {
+  ctx.beginPath();
+  ctx.arc(600, 290, r, 0, Math.PI * 2);
+  ctx.stroke();
+});
+
+// Dome shape
+ctx.fillStyle = '#d4a539';
+ctx.beginPath();
+ctx.moveTo(570, 210);
+ctx.quadraticCurveTo(600, 170, 630, 210);
+ctx.lineTo(625, 240);
+ctx.lineTo(575, 240);
+ctx.closePath();
+ctx.fill();
+
+// Crescent
+ctx.beginPath();
+ctx.arc(600, 175, 8, 0, Math.PI * 2);
+ctx.fill();
+ctx.fillStyle = '#0b261c';
+ctx.beginPath();
+ctx.arc(604, 173, 7, 0, Math.PI * 2);
+ctx.fill();
+
+// Book
+ctx.fillStyle = '#d4a539';
+ctx.beginPath();
+ctx.moveTo(575, 240);
+ctx.lineTo(555, 265);
+ctx.lineTo(600, 255);
+ctx.lineTo(645, 265);
+ctx.lineTo(625, 240);
+ctx.lineTo(600, 248);
+ctx.closePath();
+ctx.fill();
+
+// Spine line
+ctx.strokeStyle = '#0b261c';
+ctx.lineWidth = 2;
+ctx.beginPath();
+ctx.moveTo(600, 248);
+ctx.lineTo(600, 255);
+ctx.stroke();
+
+// "QURAAN" text
+ctx.fillStyle = '#ffffff';
+ctx.font = '900 78px "Segoe UI", "Helvetica Neue", Arial, sans-serif';
+ctx.textAlign = 'center';
+ctx.letterSpacing = '14px';
+ctx.fillText('QURAAN', 600, 370);
+
+// "A Journey of Guidance"
+ctx.fillStyle = '#d4a539';
+ctx.font = '300 30px "Segoe UI", "Helvetica Neue", Arial, sans-serif';
+ctx.fillText('A Journey of Guidance', 600, 420);
+
+// Bottom text
+ctx.fillStyle = 'rgba(255,255,255,0.4)';
+ctx.font = '400 20px "Segoe UI", "Helvetica Neue", Arial, sans-serif';
+ctx.fillText('Listen & Watch Live Stream', 600, 580);
+
+// Download
+const a = document.createElement('a');
+a.download = 'og-image.png';
+a.href = c.toDataURL('image/png');
+a.click();
+document.body.innerHTML = '<h1 style="color:green;font-family:sans-serif;text-align:center;margin-top:100px;">✅ Done! og-image.png downloaded.<br>Move it to assets/icons/ folder.</h1>';
+</script>
+</body>
+</html>
