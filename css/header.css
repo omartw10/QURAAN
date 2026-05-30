@@ -51,11 +51,13 @@
   font-family: var(--font-title);
   font-weight: 700;
   box-shadow: 0 4px 12px rgba(7, 56, 42, 0.3);
-  transition: transform var(--transition-speed) var(--transition-timing);
+  transition: box-shadow var(--transition-speed) var(--transition-timing),
+              border-color var(--transition-speed) var(--transition-timing);
 }
 
 .header__logo:hover .header__logo-icon {
-  transform: rotate(15deg) scale(1.05);
+  box-shadow: 0 0 0 4px rgba(212, 165, 57, 0.18), 0 4px 16px rgba(212, 165, 57, 0.3);
+  border-color: var(--color-accent-light);
 }
 
 .header__logo-text {
@@ -63,6 +65,11 @@
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-color);
+  transition: color var(--transition-speed) var(--transition-timing);
+}
+
+.header__logo:hover .header__logo-text {
+  color: var(--color-accent);
 }
 
 /* Navigation Links */

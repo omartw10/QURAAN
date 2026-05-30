@@ -4,31 +4,31 @@
 
 :root {
   /* الهوية اللونية: أخضر زمردي إسلامي + ذهبي فاخر */
-  --color-primary: #0d5c43;    /* أخضر زمردي عميق */
-  --color-secondary: #07382a;  /* أخضر أغمق */
-  --color-accent: #c6a04b;     /* ذهبي دافئ */
-  --color-accent-light: #e0c074;/* ذهبي فاتح للتدرجات */
+  --color-primary: #0b5e42;    /* أخضر زمردي عميق */
+  --color-secondary: #063a2a;  /* أخضر أغمق */
+  --color-accent: #d4a539;     /* ذهبي ملكي غني */
+  --color-accent-light: #f0d070;/* ذهبي مشرق للتدرجات */
   --color-aux-1: #ffffff;      /* أبيض نقي */
 
   /* تدرجات لونية جاهزة لإعادة الاستخدام */
-  --gradient-gold: linear-gradient(135deg, #b8923c, #e0c074);
-  --gradient-dark: linear-gradient(135deg, #0d5c43, #07382a);
+  --gradient-gold: linear-gradient(135deg, #c49432, #f0d070);
+  --gradient-dark: linear-gradient(135deg, #0b5e42, #063a2a);
 
   /* Light Theme Mapping (Default) */
-  --bg-color: #f4f8f5;
+  --bg-color: #f3f8f4;
   --card-bg: #ffffff;
-  --text-color: #123528;
-  --text-muted: #5d7a6e;
+  --text-color: #102e22;
+  --text-muted: #577a6c;
   --text-white: #ffffff;
-  --border-color: #d9e7df;
-  --header-bg: rgba(244, 248, 245, 0.85);
-  --hover-bg: #eaf3ee;
-  --shadow-sm: 0 2px 8px rgba(13, 92, 67, 0.06);
-  --shadow: 0 8px 24px rgba(13, 92, 67, 0.10);
-  --shadow-lg: 0 18px 45px rgba(13, 92, 67, 0.16);
-  --accent-soft: rgba(198, 160, 75, 0.14);
+  --border-color: #d5e4db;
+  --header-bg: rgba(243, 248, 244, 0.88);
+  --hover-bg: #e7f1eb;
+  --shadow-sm: 0 2px 8px rgba(11, 94, 66, 0.06);
+  --shadow: 0 8px 24px rgba(11, 94, 66, 0.10);
+  --shadow-lg: 0 18px 45px rgba(11, 94, 66, 0.15);
+  --accent-soft: rgba(212, 165, 57, 0.12);
 
-  /* Border Radius Scale (كانت مفقودة سابقاً) */
+  /* Border Radius Scale */
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 24px;
@@ -44,21 +44,21 @@
   --transition-timing: ease-in-out;
 }
 
-/* Dark Theme Mapping (أخضر داكن أنيق + ذهبي) */
+/* Dark Theme Mapping (أخضر داكن راقي + ذهبي مضيء) */
 [data-theme="dark"] {
-  --bg-color: #07211a;         /* أخضر داكن جداً */
-  --card-bg: #0d3328;          /* أخضر متوسط العمق للبطاقات */
-  --text-color: #eaf5ef;       /* أبيض مخضر مقروء جداً */
-  --text-muted: #9cc0b1;       /* أخضر فاتح للملاحظات */
-  --border-color: #1d4a3b;
-  --header-bg: rgba(7, 33, 26, 0.85);
-  --hover-bg: #154538;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.65);
-  --accent-soft: rgba(224, 192, 116, 0.16);
-  --gradient-gold: linear-gradient(135deg, #c6a04b, #ecd285);
-  --gradient-dark: linear-gradient(135deg, #0d3328, #061a14);
+  --bg-color: #06190f;         /* أخضر فاحم عميق وأنيق */
+  --card-bg: #0b261c;          /* أخضر داكن بتباين واضح */
+  --text-color: #e6f2eb;       /* أبيض مخضر مريح للعين */
+  --text-muted: #8cb8a3;       /* أخضر فاتح مقروء للملاحظات */
+  --border-color: #163d30;
+  --header-bg: rgba(6, 25, 15, 0.92);
+  --hover-bg: #133a2d;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 18px 45px rgba(0, 0, 0, 0.7);
+  --accent-soft: rgba(212, 165, 57, 0.14);
+  --gradient-gold: linear-gradient(135deg, #d4a539, #f5d97a);
+  --gradient-dark: linear-gradient(135deg, #0b261c, #051410);
 }
 
 /* انتقال ناعم بين الصفحات: ظهور تدريجي عند الفتح، واختفاء قبل المغادرة.
