@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a2c00" />
+      <stop offset="100%" stop-color="#241500" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b66a00" />
+      <stop offset="100%" stop-color="#7a4700" />
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#bgGrad)"/>
+  
+  <!-- Mosque Dome -->
+  <path d="M256 140 C160 200 140 280 140 400 L372 400 C372 280 352 200 256 140 Z" fill="url(#goldGrad)"/>
+  
+  <!-- Crescent -->
+  <path d="M256 70 A 24 24 0 1 0 276 100 A 20 20 0 1 1 256 70 Z" fill="url(#goldGrad)"/>
+  
+  <!-- Open Book (Quran) -->
+  <path d="M256 360 C180 330 150 350 150 350 L150 250 C180 230 256 260 256 260 C256 260 332 230 362 250 L362 350 C362 350 332 330 256 360 Z" fill="#ffffff" opacity="0.95"/>
+  <path d="M256 260 L256 360" stroke="#7a4700" stroke-width="8" stroke-linecap="round"/>
+</svg>
